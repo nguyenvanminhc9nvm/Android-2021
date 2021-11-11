@@ -30,7 +30,7 @@ import javax.inject.Singleton
 class ApplicationModule {
 
     @Provides
-    fun providerApiHost() = "http://192.168.1.100:6969/api/v1"
+    fun providerApiHost() = "http://192.168.1.100:6969/api/v1/"
 
     @Provides
     @Singleton
@@ -51,15 +51,17 @@ class ApplicationModule {
     fun provideRetrofit(
         okHttpClient: OkHttpClient,
         BASE_URL: String
-    ): Retrofit = Retrofit.Builder()
-        .addConverterFactory(GsonConverterFactory.create())
-        .baseUrl(BASE_URL)
-        .client(okHttpClient)
-        .build()
+    ): Retrofit {
+        return Retrofit.Builder()
+            .addConverterFactory(GsonConverterFactory.create())
+            .baseUrl(BASE_URL)
+            .client(okHttpClient)
+            .build()
+    }
 
     @Provides
     @Singleton
-    fun providerAppDatabase(@ApplicationContext context: Context) =
+    fun providerAppDatabase(@ApplicationContext context: Context): AppDatabase =
         Room.databaseBuilder(context, AppDatabase::class.java, Constants.DB_APP).build()
 
     @Provides

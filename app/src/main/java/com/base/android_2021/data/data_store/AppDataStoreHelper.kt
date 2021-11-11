@@ -26,5 +26,4 @@ class AppDataStoreHelper @Inject constructor(
             it[KEY_TOKEN]
         }.first() ?: ""
     }
-
 }

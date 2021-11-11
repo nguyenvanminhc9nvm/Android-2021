@@ -15,4 +15,8 @@ class AppDataManager @Inject constructor(
     suspend fun doLogin(loginRequest: LoginRequest): LoginResponse {
         return apiHelper.doLogin(loginRequest)
     }
+
+    suspend fun doSaveToken(token: String) {
+        return dataStoreHelper.saveToken(token)
+    }
 }
